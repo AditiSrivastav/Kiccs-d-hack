@@ -1,0 +1,33 @@
+import java.util.*;
+public class ClosestPalindrome
+{
+    public static boolean isPalindrome(int n)
+    {
+        int num = n, rem, rev = 0;
+        boolean b = false;
+        while(num > 0)
+        {
+            rem = num % 10;
+            rev = rev * 10 + rem;
+            num = num /10;
+        }
+        if(rev == n)
+            b = true;
+        return b;
+    }
+    public static void main(String args[])
+    {
+        int n, num, count = 0; boolean ans;
+        Scanner br = new Scanner(System.in);
+        n = br.nextInt();
+        while(!isPalindrome(n))
+        {
+            count++;
+            if(isPalindrome(n - count))
+                n = n - count;
+            if(isPalindrome(n + count))
+                n = n + count;
+        }
+        System.out.println(n);
+    }
+}
